@@ -31,29 +31,29 @@
         },
         body: JSON.stringify({ name: valueInput })
       })
-      fetch('/users')
-        .then(response => {
-          console.log('это наш ответ' + response)
-          return response.json()
-        })
-        .then(data => {
-          console.log('это из файла юзеров на хостинге когда мы ' + data.name)
-        })
+      // fetch('/users')
+      //   .then(response => {
+      //     console.log('это наш ответ' + response)
+      //     return response.json()
+      //   })
+      //   .then(data => {
+      //     console.log('это из файла юзеров на хостинге когда мы ' + data.name)
+      //   })
 
-      fetch('https://first-second-third.herokuapp.com/users')
-        .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          console.log('Получаем из хостинга' + data.name)
-          fetch('http://localhost:3000/users', {
-            method: "POST",
-            headers: {
-              'Component-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: data.name })
-          })
-        })
+      // fetch('https://first-second-third.herokuapp.com/users')
+      //   .then(response => {
+      //     return response.json()
+      //   })
+      //   .then(data => {
+      //     console.log('Получаем из хостинга' + data.name)
+      //     fetch('http://localhost:3000/users', {
+      //       method: "POST",
+      //       headers: {
+      //         'Component-Type': 'application/json'
+      //       },
+      //       body: JSON.stringify({ name: data.name })
+      //     })
+      //   })
     }
 
   </script>
