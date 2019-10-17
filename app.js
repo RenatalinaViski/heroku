@@ -8,3 +8,29 @@ server.use(middlewares);
 server.use(router);
 
 server.listen(port);
+
+let appendBody=(node)=>document.body.appendChild(document.createElement(node))
+let appendToParent=(parent,node)=>parent.appendChild(document.createElement(node))
+
+let div=appendBody('div')
+let input=appendToParent(div,'input')
+let button=appendToParent(div,'button')
+
+button.onclick=()=>{
+    let valueInput=input.value
+    fetch('/users',{
+        method:"POST",
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(valueInput)
+    })
+    fetch('/users')
+    .then(response=>{
+        console.log(response)
+        return response.json()
+    })
+    .then(data=>{
+        console.log(data)
+    })
+}
