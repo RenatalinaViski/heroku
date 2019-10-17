@@ -9,36 +9,8 @@
 <body>
 
   Node test
-  <script>
-    
-let appendBody=(node)=>document.body.appendChild(document.createElement(node))
-let appendToParent=(parent,node)=>parent.appendChild(document.createElement(node))
 
-let div=appendBody('div')
-let input=appendToParent(div,'input')
-let button=appendToParent(div,'button')
 
-button.onclick=()=>{
-    let valueInput=input.value
-    console.log(valueInput)
-    fetch('/users',{
-        method:"POST",
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify(valueInput)
-    })
-    fetch('/users')
-    .then(response=>{
-        console.log(response)
-        return response.json()
-    })
-    .then(data=>{
-        console.log(data)
-    })
-}
-
-  </script>
-  
+  <script src="../app.js"></script>
 </body>
 </html>
