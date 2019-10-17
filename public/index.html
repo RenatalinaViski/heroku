@@ -20,6 +20,7 @@ let button=appendToParent(div,'button')
 
 button.onclick=()=>{
     let valueInput=input.value
+    console.log(valueInput)
     fetch('/users',{
         method:"POST",
         headers:{
