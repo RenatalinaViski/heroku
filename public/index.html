@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Node test</title>
 </head>
+
 <body>
 
   Node test
 
 
   <script>
-  let appendBody=(node)=>document.body.appendChild(document.createElement(node))
-let appendToParent=(parent,node)=>parent.appendChild(document.createElement(node))
+    let appendBody = (node) => document.body.appendChild(document.createElement(node))
+    let appendToParent = (parent, node) => parent.appendChild(document.createElement(node))
 
-let div=appendBody('div')
-let input=appendToParent(div,'input')
-let button=appendToParent(div,'button')
+    let div = appendBody('div')
+    let input = appendToParent(div, 'input')
+    let button = appendToParent(div, 'button')
 
-button.onclick=()=>{
-    let valueInput=input.value
-    console.log(valueInput)
-    fetch('/users',{
-        method:"POST",
-        headers:{
-            'Content-Type':'application/json'
+    button.onclick = () => {
+      let valueInput = input.value
+      console.log(valueInput)
+      fetch('/users', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
         },
-        body:JSON.stringify({name:valueInput})
-    })
-    fetch('/users')
-    .then(response=>{
-        console.log(response)
-        return response.json()
-    })
-    .then(data=>{
-        console.log(data)
-    })
-}
-</script>
+        body: JSON.stringify({ name: valueInput })
+      })
+      fetch('/users')
+        .then(response => {
+          console.log('это наш ответ' + response)
+          return response.json()
+        })
+        .then(data => {
+          console.log('это из файла юзеров на хостинге когда мы ' + data)
+        })
+
+      fetch('https://first-second-third.herokuapp.com/users')
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log('Получаем из хостинга' + data)
+          fetch('http://localhost:3000/users', {
+            method: "POST",
+            headers: {
+              'Component-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: data })
+          })
+        })
+    }
+
+  </script>
 </body>
+
 </html>
