@@ -37,7 +37,7 @@
           return response.json()
         })
         .then(data => {
-          console.log('это из файла юзеров на хостинге когда мы ' + data)
+          console.log('это из файла юзеров на хостинге когда мы ' + data.name)
         })
 
       fetch('https://first-second-third.herokuapp.com/users')
@@ -45,13 +45,13 @@
           return response.json()
         })
         .then(data => {
-          console.log('Получаем из хостинга' + data)
+          console.log('Получаем из хостинга' + data.name)
           fetch('http://localhost:3000/users', {
             method: "POST",
             headers: {
               'Component-Type': 'application/json'
             },
-            body: JSON.stringify({ name: data })
+            body: JSON.stringify({ name: data.name })
           })
         })
     }
